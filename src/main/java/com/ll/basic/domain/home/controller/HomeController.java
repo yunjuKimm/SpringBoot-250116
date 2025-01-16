@@ -31,7 +31,7 @@ public class HomeController {
     }
 
     @GetMapping("/numList")
-    public List<Integer> getNumList() {
+    public List<Integer> getNumList() { // 직접 만든 클래스가 아니라면 @Bean 을 통해서 스프링 컨테이너에 등록해줘야 한다
         return numList;
     }
 

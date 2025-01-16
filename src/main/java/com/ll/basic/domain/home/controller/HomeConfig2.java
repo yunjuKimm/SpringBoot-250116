@@ -7,6 +7,7 @@ import java.util.List;
 
 @Configuration
 public class HomeConfig2 {
+
     @Bean
     public List<Integer> numList2(List<Integer> numList) {
         return numList.reversed();

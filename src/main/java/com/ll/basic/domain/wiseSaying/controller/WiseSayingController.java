@@ -23,7 +23,7 @@ public class WiseSayingController {
         return wiseSayingService.getAllItems();
     }
 
-    @GetMapping("/wiseSaying/write")
+    @GetMapping("/wiseSayings/write")
     public WiseSaying writeWiseSaying() {
         return wiseSayingService.write("명언1", "작가1");
     }
