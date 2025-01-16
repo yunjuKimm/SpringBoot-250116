@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Controller // @Controller 어노테이션을 붙여주면 스프링부트가 이 클래스를 컨트롤러로 인식하게 된다.
+@ResponseBody  // 를 안붙이면 브라우저에 보여주지 않는다. 클래스에 붙이면 모든 메소드에 적용된다.
 public class HomeController {
 
     private int age = 0;
@@ -103,6 +105,38 @@ public class HomeController {
                 .isDeleted(false)
                 .build();
     }
+
+    @GetMapping("/mapList")
+    public List<Map<String, String>> getMapList() {
+        return List.of( // 2개의 Map을 가지는 하나의 List
+                Map.of("k1", "v1", "k2", "v2"),
+                Map.of("k3", "v3", "k4", "v4")
+        );
+    }
+
+
+    @GetMapping("/articleList")
+    public List<Article> getArticleList() {
+        return List.of(
+                Article.builder().title("제목1").body("내용1").isDeleted(false).build(),
+                Article.builder().title("제목2").body("내용2").isDeleted(false).build()
+        );
+    }
+
+    @GetMapping("/articleList.html")
+    public String getArticleListHtml() {
+        Article a1 = Article.builder().title("aaaa").body("내용1").isDeleted(false).build();
+        Article a2 = Article.builder().title("bbbb").body("내용2").isDeleted(false).build();
+
+        List<Article> articleList = List.of(a1, a2);
+
+        String lis = articleList.stream()
+                .map(a -> "<li>%s</li>".formatted(a.getTitle()))
+                .collect(Collectors.joining());
+
+        return "<ul>" + lis + "</ul>"; // 자바에서 하지 않고, html에서 하려고 template(자바로 작동하는 html)
+    }
+
 }
 
 @Getter
