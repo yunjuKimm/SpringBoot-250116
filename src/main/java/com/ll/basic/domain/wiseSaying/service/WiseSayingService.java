@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class WiseSayingService {
@@ -29,6 +30,11 @@ public class WiseSayingService {
         wiseSayingList.add(w2);
     }
 
+    public Optional<WiseSaying> getItem(int id) {
+        return wiseSayingList.stream()
+                .filter(w -> w.getId() == id)
+                .findFirst();
+    }
 
     public List<WiseSaying> getAllItems() {
         return wiseSayingList;
