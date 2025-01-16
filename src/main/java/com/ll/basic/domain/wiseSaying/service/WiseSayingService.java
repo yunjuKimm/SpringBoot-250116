@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-// @Component
-@Service
+
+@Service // @Component를 상속받아 만들어진 어노테이션
 public class WiseSayingService {
 
     @Autowired
