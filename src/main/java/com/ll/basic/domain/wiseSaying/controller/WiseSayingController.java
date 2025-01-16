@@ -35,5 +35,14 @@ public class WiseSayingController {
         return wiseSayingService.getItem(id).orElse(null);
     }
 
+    @GetMapping("/wiseSayings/{id}/delete") // <- @DeleteMapping("/wiseSayings/{id}") 으로 @뒤에 메소드를 적음
+    public boolean deleteItem(@PathVariable int id) {
+        return wiseSayingService.deleteById(id);
+    }
+
+    @GetMapping("/wiseSayings/{id}/modify")
+    public WiseSaying modifyItem(@PathVariable int id, String content, String author) {
+        return wiseSayingService.modify(id, content, author);
+    }
 
 }
